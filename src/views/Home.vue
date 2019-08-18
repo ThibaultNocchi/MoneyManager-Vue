@@ -1,8 +1,22 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <list-spendings ref="spendings" />
-    <new-spending @newSpending="triggerRefresh" />
+
+    <h1 class="my-2">Home</h1>
+
+    <div class="card my-2">
+      <div class="card-body">
+        <h5 class="card-title">Recent spendings</h5>
+        <list-spendings ref="spendings" />
+      </div>
+    </div>
+
+    <div class="card my-2">
+      <div class="card-body">
+        <h5 class="card-title">New spending</h5>
+        <new-spending @newSpending="triggerRefresh" />
+      </div>
+    </div>
+
   </div>
 </template>
 
