@@ -34,7 +34,11 @@ export default {
   },
   computed: {
     spendings_reversed () {
-      return this.spendings.slice().reverse()
+      let result = this.spendings.slice().reverse()
+      if (this.length !== undefined) {
+        result = result.slice(0, this.length)
+      }
+      return result
     }
   },
   methods: {
@@ -48,6 +52,9 @@ export default {
   },
   mounted () {
     this.refreshSpendings()
+  },
+  props: {
+    length: Number
   }
 }
 </script>

@@ -6,7 +6,7 @@
     <div class="card my-2">
       <div class="card-body">
         <h5 class="card-title">Recent spendings</h5>
-        <list-spendings ref="spendings" />
+        <list-spendings ref="spendings" :length="15" />
       </div>
     </div>
 
