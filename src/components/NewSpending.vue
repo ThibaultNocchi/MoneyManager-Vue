@@ -1,10 +1,10 @@
 <template>
   <form v-on:submit.prevent="submit">
     <div class="form-row">
-      <div class="col">
+      <div class="col-md form-group">
         <input type="text" id="new-spending-desc" class="form-control" placeholder="Description" v-model="desc"/>
       </div>
-      <div class="col">
+      <div class="col-md form-group">
         <div class="input-group">
           <input type="number" min="0" step="0.01" id="new-spending-price" class="form-control" placeholder="0" required v-model="price" />
           <div class="input-group-append">
@@ -12,11 +12,11 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col-md form-group">
         <input type="date" class="form-control" required v-model="date" />
       </div>
-      <div class="col">
-        <button class="btn btn-primary">Add</button>
+      <div class="col-md form-group">
+        <button class="btn btn-primary float-right">Add</button>
       </div>
     </div>
   </form>
