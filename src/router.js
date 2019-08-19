@@ -19,6 +19,13 @@ export default new Router({
       component () {
         return import('./views/Spendings.vue')
       }
+    },
+    {
+      path: '/manage',
+      name: 'manage',
+      component () {
+        return import('./views/Manage.vue')
+      }
     }
     // {
     //   path: '/about',

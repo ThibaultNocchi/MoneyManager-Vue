@@ -1,20 +1,20 @@
 <template>
-  <select>
-    <option value="Me" selected>Me</option>
+  <select v-model="selected" ref="select">
+    <option value="Me" selected v-if="enableMe">Me</option>
     <option v-for="(person, idx) in people" :key="idx" :value="person">{{person}}</option>
   </select>
 </template>
 
 <script>
-import Vue from 'vue'
 export default {
   data () {
     return {
-      people: []
+      people: this.$store.state.people,
+      selected: 'Me'
     }
   },
-  mounted () {
-    this.people = JSON.parse(Vue.localStorage.get('people', '[]'))
+  props: {
+    enableMe: { type: Boolean, default: false }
   }
 }
 </script>

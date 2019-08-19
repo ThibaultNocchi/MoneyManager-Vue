@@ -19,11 +19,11 @@
     <div class="form-row">
       <div class="col-md form-group">
         <label for="paid">Who paid?</label>
-        <people-select id="paid" class="form-control"></people-select>
+        <people-select id="paid" class="form-control" enableMe></people-select>
       </div>
       <div class="col-md form-group">
         <label for="paidTo">For who?</label>
-        <people-select id="paidTo" class="form-control" multiple></people-select>
+        <people-select id="paidTo" class="form-control" multiple enableMe></people-select>
       </div>
     </div>
     <div class="form-row">
