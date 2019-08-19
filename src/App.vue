@@ -7,10 +7,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <!-- <li class="nav-item"><router-link to="/" class="nav-link">Home</router-link></li>
-          <li class="nav-item"><router-link to="spendings" class="nav-link">Spendings</router-link></li> -->
           <router-link to="/" class="nav-item" tag="li" exact-active-class="active"><a class="nav-link">Home</a></router-link>
           <router-link to="spendings" class="nav-item" tag="li" exact-active-class="active"><a class="nav-link">Spendings</a></router-link>
+          <router-link to="manage" class="nav-item" tag="li" exact-active-class="active"><a class="nav-link">Manage</a></router-link>
         </ul>
       </div>
     </nav>
