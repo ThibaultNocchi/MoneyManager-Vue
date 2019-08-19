@@ -6,7 +6,7 @@
         <h5 class="card-title">Add or remove someone</h5>
         <div class="card-text">
 
-          <form>
+          <form @submit.prevent="remove_name">
             <div class="form-row align-items-end">
               <div class="form-group col">
                 <people-select ref="select" class="form-control"></people-select>
@@ -53,6 +53,7 @@ export default {
   },
 
   methods: {
+
     add_new_name () {
       this.display_help = false
       let promise = this.$store.dispatch('add_people', this.new_name)
@@ -61,7 +62,13 @@ export default {
       }, () => {
         this.display_help = true
       })
+    },
+
+    remove_name () {
+      let name = this.$refs.select.selected
+      this.$store.commit('remove_people', name)
     }
+
   }
 
 }
