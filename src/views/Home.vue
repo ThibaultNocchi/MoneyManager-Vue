@@ -13,7 +13,7 @@
     <div class="card my-2">
       <div class="card-body">
         <h5 class="card-title">New spending</h5>
-        <new-spending @newSpending="triggerRefresh" />
+        <new-spending />
       </div>
     </div>
 
@@ -28,11 +28,6 @@ export default {
   components: {
     ListSpendings,
     NewSpending
-  },
-  methods: {
-    triggerRefresh () {
-      this.$refs.spendings.refreshSpendings()
-    }
   }
 }
 </script>

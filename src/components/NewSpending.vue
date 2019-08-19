@@ -36,7 +36,6 @@
 
 <script>
 
-import Vue from 'vue'
 import moment from 'moment'
 import PeopleSelect from '@/components/PeopleSelect.vue'
 
@@ -56,23 +55,8 @@ export default {
       let to = this.$refs.paid_for.selected
       if (typeof to === 'string') to = [to]
       let obj = { price: this.price, desc: this.desc, date: this.date, by: this.$refs.paid_by.selected, to: to }
-      if (!this.desc) {
-        obj.desc = 'Not given'
-      }
-      let current = JSON.parse(Vue.localStorage.get('spendings', '[]'))
-
-      current.push(obj)
-      current.sort((a, b) => {
-        let dateA = moment(a.date)
-        let dateB = moment(b.date)
-        if (dateA.isBefore(dateB)) return -1
-        else if (dateB.isBefore(dateA)) return 1
-        else return 0
-      })
-
-      Vue.localStorage.set('spendings', JSON.stringify(current))
+      this.$store.commit('add_spending', obj)
       this.resetData()
-      this.$emit('newSpending')
     },
 
     defaultData () {

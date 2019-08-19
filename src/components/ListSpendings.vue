@@ -1,6 +1,6 @@
 <template>
   <div class="list-spendings">
-    <div class="table-responsive" v-if="spendings.length > 0">
+    <div class="table-responsive" v-if="spendings_reversed.length > 0">
       <table class="table">
         <thead>
           <tr>
@@ -29,20 +29,14 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import ClickIcon from '@/components/ClickIcon'
 export default {
   components: {
     ClickIcon
   },
-  data () {
-    return {
-      spendings: []
-    }
-  },
   computed: {
     spendings_reversed () {
-      let result = this.spendings.slice().reverse()
+      let result = this.$store.state.spendings.slice().reverse()
       if (this.length !== undefined) {
         result = result.slice(0, this.length)
       }
@@ -50,16 +44,9 @@ export default {
     }
   },
   methods: {
-    refreshSpendings () {
-      this.spendings = JSON.parse(Vue.localStorage.get('spendings', '[]'))
-    },
     removeElement (idx) {
-      this.spendings.splice(idx, 1)
-      Vue.localStorage.set('spendings', JSON.stringify(this.spendings))
+      this.$store.commit('remove_spending', idx)
     }
-  },
-  mounted () {
-    this.refreshSpendings()
   },
   props: {
     length: Number
