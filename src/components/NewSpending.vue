@@ -19,11 +19,11 @@
     <div class="form-row">
       <div class="col-md form-group">
         <label for="paid">Who paid?</label>
-        <people-select id="paid" class="form-control" enableMe></people-select>
+        <people-select id="paid" class="form-control" enableMe ref="paid_by"></people-select>
       </div>
       <div class="col-md form-group">
         <label for="paidTo">For who?</label>
-        <people-select id="paidTo" class="form-control" multiple enableMe></people-select>
+        <people-select id="paidTo" class="form-control" multiple enableMe ref="paid_for"></people-select>
       </div>
     </div>
     <div class="form-row">
@@ -53,7 +53,7 @@ export default {
   methods: {
 
     submit () {
-      let obj = { price: this.price, desc: this.desc, date: this.date }
+      let obj = { price: this.price, desc: this.desc, date: this.date, by: this.$refs.paid_by.selected, to: this.$refs.paid_for.selected }
       if (!this.desc) {
         obj.desc = 'Not given'
       }

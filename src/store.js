@@ -31,7 +31,7 @@ export default new Vuex.Store({
 
     add_people (context, name) {
       return new Promise((resolve, reject) => {
-        if (!context.state.people.includes(name) && name !== '') {
+        if (!context.state.people.includes(name) && name !== '' && name !== 'Me') {
           context.commit('add_people', name)
           resolve()
         } else {

@@ -5,6 +5,8 @@
         <th scope="col">Price</th>
         <th scope="col">Desc.</th>
         <th scope="col">Date</th>
+        <th scope="col">Paid by</th>
+        <th scope="col">Paid for</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -13,6 +15,8 @@
         <td>{{spending.price}} €</td>
         <td>{{spending.desc}}</td>
         <td>{{spending.date}}</td>
+        <td>{{spending.by}}</td>
+        <td>{{spending.to.join(', ')}}</td>
         <td><click-icon @click="removeElement(spendings_reversed.length-idx-1)">clear</click-icon></td>
       </tr>
     </tbody>
