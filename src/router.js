@@ -12,6 +12,13 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/spendings',
+      name: 'spendings',
+      component () {
+        return import('./views/Spendings.vue')
+      }
     }
     // {
     //   path: '/about',
