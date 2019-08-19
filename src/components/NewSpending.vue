@@ -15,6 +15,24 @@
       <div class="col-md form-group">
         <input type="date" class="form-control" required v-model="date" />
       </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md form-group">
+        <label for="paid">Who paid?</label>
+        <select id="paid" class="form-control">
+          <option value="Me" selected>Me</option>
+          <option v-for="(person, idx) in people" :key="idx" :value="person">{{person}}</option>
+        </select>
+      </div>
+      <div class="col-md form-group">
+        <label for="paidTo">For who?</label>
+        <select id="paidTo" class="form-control" multiple>
+          <option value="Me" selected>Me</option>
+          <option v-for="(person, idx) in people" :key="idx" :value="person">{{person}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
       <div class="col-md form-group">
         <button class="btn btn-primary float-right">Add</button>
       </div>
@@ -28,10 +46,13 @@ import Vue from 'vue'
 import moment from 'moment'
 
 export default {
+
   data () {
     return this.defaultData()
   },
+
   methods: {
+
     submit () {
       let obj = { price: this.price, desc: this.desc, date: this.date }
       if (!this.desc) {
@@ -52,16 +73,25 @@ export default {
       this.resetData()
       this.$emit('newSpending')
     },
+
     defaultData () {
       return {
         desc: null,
         price: 0,
-        date: moment().format('GGGG-MM-DD')
+        date: moment().format('GGGG-MM-DD'),
+        people: JSON.parse(Vue.localStorage.get('people', '[]'))
       }
     },
+
     resetData () {
       Object.assign(this.$data, this.defaultData())
     }
+
+  },
+
+  mounted () {
+    this.people = JSON.parse(Vue.localStorage.get('people', '[]'))
   }
+
 }
 </script>
