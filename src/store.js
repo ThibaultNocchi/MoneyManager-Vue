@@ -52,6 +52,11 @@ export default new Vuex.Store({
     remove_spending (state, idx) {
       state.spendings.splice(idx, 1)
       Vue.localStorage.set('spendings', JSON.stringify(state.spendings))
+    },
+
+    delete_every_spending (state) {
+      state.spendings.splice(0)
+      Vue.localStorage.set('spendings', JSON.stringify(state.spendings))
     }
 
   },
@@ -71,6 +76,7 @@ export default new Vuex.Store({
 
     remove_everything (context) {
       context.commit('delete_every_people')
+      context.commit('delete_every_spending')
     }
 
   }

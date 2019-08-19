@@ -1,7 +1,9 @@
 <template>
-  <div class="manage">
+  <div class="manage my-2">
+
     <h1>Manage people</h1>
-    <div class="card">
+
+    <div class="card my-2">
       <div class="card-body">
         <h5 class="card-title">Add or remove someone</h5>
         <div class="card-text">
@@ -32,6 +34,21 @@
         </div>
       </div>
     </div>
+
+    <div class="card my-2">
+      <div class="card-body">
+        <h5 class="card-title">Delete everything</h5>
+        <div class="card-text">
+          <p>This action will delete every data stored by this website from your browser.</p>
+          <form @submit.prevent="remove_everything">
+            <div class="form-group">
+              <button class="btn btn-danger" type="submit">Delete everything</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -67,6 +84,10 @@ export default {
     remove_name () {
       let name = this.$refs.select.selected
       this.$store.commit('remove_people', name)
+    },
+
+    remove_everything () {
+      this.$store.dispatch('remove_everything')
     }
 
   }
