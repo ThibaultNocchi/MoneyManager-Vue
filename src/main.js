@@ -2,9 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import 'bootstrap'
-import VueLocalStorage from 'vue-localstorage'
+import vueLocalstorage from 'vue-localstorage'
 
-Vue.use(VueLocalStorage)
+Vue.use(vueLocalstorage)
 
 Vue.config.productionTip = false
 

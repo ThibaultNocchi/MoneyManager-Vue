@@ -13,6 +13,9 @@
         </div>
       </div>
       <div class="col">
+        <input type="date" class="form-control" required v-model="date" />
+      </div>
+      <div class="col">
         <button class="btn btn-primary">Add</button>
       </div>
     </div>
@@ -22,26 +25,42 @@
 <script>
 
 import Vue from 'vue'
+import moment from 'moment'
 
 export default {
   data () {
-    return {
-      desc: null,
-      price: 0
-    }
+    return this.defaultData()
   },
   methods: {
     submit () {
-      let obj = { price: this.price, desc: this.desc }
+      let obj = { price: this.price, desc: this.desc, date: this.date }
       if (!this.desc) {
         obj.desc = 'Not given'
       }
       let current = JSON.parse(Vue.localStorage.get('spendings', '[]'))
+
       current.push(obj)
+      current.sort((a, b) => {
+        let dateA = moment(a.date)
+        let dateB = moment(b.date)
+        if (dateA.isBefore(dateB)) return -1
+        else if (dateB.isBefore(dateA)) return 1
+        else return 0
+      })
+
       Vue.localStorage.set('spendings', JSON.stringify(current))
-      this.price = null
-      this.desc = null
+      this.resetData()
       this.$emit('newSpending')
+    },
+    defaultData () {
+      return {
+        desc: null,
+        price: 0,
+        date: moment().format('GGGG-MM-DD')
+      }
+    },
+    resetData () {
+      Object.assign(this.$data, this.defaultData())
     }
   }
 }

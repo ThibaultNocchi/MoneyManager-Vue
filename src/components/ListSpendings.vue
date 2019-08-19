@@ -4,6 +4,7 @@
       <tr>
         <th scope="col">Price</th>
         <th scope="col">Desc.</th>
+        <th scope="col">Date</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -11,6 +12,7 @@
       <tr v-for="(spending, idx) in spendings_reversed" :key="idx">
         <td>{{spending.price}} €</td>
         <td>{{spending.desc}}</td>
+        <td>{{spending.date}}</td>
         <td><click-icon @click="removeElement(spendings_reversed.length-idx-1)">clear</click-icon></td>
       </tr>
     </tbody>
