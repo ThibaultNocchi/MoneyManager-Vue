@@ -53,7 +53,9 @@ export default {
   methods: {
 
     submit () {
-      let obj = { price: this.price, desc: this.desc, date: this.date, by: this.$refs.paid_by.selected, to: this.$refs.paid_for.selected }
+      let to = this.$refs.paid_for.selected
+      if (typeof to === 'string') to = [to]
+      let obj = { price: this.price, desc: this.desc, date: this.date, by: this.$refs.paid_by.selected, to: to }
       if (!this.desc) {
         obj.desc = 'Not given'
       }
