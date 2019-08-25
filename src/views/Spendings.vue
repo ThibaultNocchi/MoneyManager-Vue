@@ -3,7 +3,7 @@
   <div class="spendings my-2">
 
     <h1 class="my-2">Spendings</h1>
-    <list-spendings class="my-2" ref="spendings" />
+    <list-spendings class="my-2" />
 
   </div>
 

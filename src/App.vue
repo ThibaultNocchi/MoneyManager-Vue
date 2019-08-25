@@ -9,6 +9,7 @@
         <ul class="navbar-nav mr-auto">
           <router-link to="/" class="nav-item" tag="li" exact-active-class="active"><a class="nav-link">Home</a></router-link>
           <router-link to="spendings" class="nav-item" tag="li" exact-active-class="active"><a class="nav-link">Spendings</a></router-link>
+          <router-link to="balance" class="nav-item" tag="li" exact-active-class="active"><a class="nav-link">Balance</a></router-link>
           <router-link to="manage" class="nav-item" tag="li" exact-active-class="active"><a class="nav-link">Manage</a></router-link>
         </ul>
       </div>

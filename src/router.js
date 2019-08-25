@@ -26,6 +26,13 @@ export default new Router({
       component () {
         return import('./views/Manage.vue')
       }
+    },
+    {
+      path: '/balance',
+      name: 'balance',
+      component () {
+        return import('./views/Balance.vue')
+      }
     }
     // {
     //   path: '/about',
