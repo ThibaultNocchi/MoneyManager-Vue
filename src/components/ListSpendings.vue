@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     removeElement (idx) {
-      this.$store.commit('remove_spending', idx)
+      this.$store.dispatch('remove_spending', idx)
     }
   },
   props: {

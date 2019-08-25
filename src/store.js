@@ -10,10 +10,36 @@ export default new Vuex.Store({
 
   state: {
     people: JSON.parse(Vue.localStorage.get('people', '[]')),
-    spendings: JSON.parse(Vue.localStorage.get('spendings', '[]'))
+    spendings: JSON.parse(Vue.localStorage.get('spendings', '[]')),
+    owed: JSON.parse(Vue.localStorage.get('owed', '{}'))
   },
 
   mutations: {
+
+    add_owed (state, { by, to, sum }) {
+      if (!(by === 'Me' && to === 'Me')) {
+        let other
+        if (by === 'Me') {
+          other = to
+        } else if (to === 'Me') {
+          other = by
+          sum *= -1
+        }
+        if (other !== undefined && other !== 'Me') {
+          if (!(other in state.owed)) {
+            Vue.set(state.owed, other, 0)
+          }
+          Vue.set(state.owed, other, state.owed[other] + sum)
+          if (state.owed[other] === 0) Vue.delete(state.owed, other)
+        }
+        Vue.localStorage.set('owed', JSON.stringify(state.owed))
+      }
+    },
+
+    delete_every_owed (state) {
+      state.owed = {}
+      Vue.localStorage.set('owed', JSON.stringify(state.owed))
+    },
 
     add_people (state, name) {
       state.people.push(name)
@@ -74,9 +100,27 @@ export default new Vuex.Store({
       })
     },
 
+    add_owed (context, { by, to, sum }) {
+      let initialToLength = to.length
+      let owedByEach = Math.floor(sum / initialToLength * 100) / 100
+      to.forEach(element => {
+        context.commit('add_owed', { by: by, to: element, sum: owedByEach })
+      })
+    },
+
+    remove_spending (context, idx) {
+      let item = context.state.spendings[idx]
+      let owedByEach = (Math.floor(item.price / item.to.length * 100) / 100) * -1
+      item.to.forEach(element => {
+        context.commit('add_owed', { by: item.by, to: element, sum: owedByEach })
+      })
+      context.commit('remove_spending', idx)
+    },
+
     remove_everything (context) {
       context.commit('delete_every_people')
       context.commit('delete_every_spending')
+      context.commit('delete_every_owed')
     }
 
   }

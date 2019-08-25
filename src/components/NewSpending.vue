@@ -57,6 +57,7 @@ export default {
       let obj = { price: this.price, desc: this.desc, date: this.date, by: this.$refs.paid_by.selected, to: to }
       this.$store.commit('add_spending', obj)
       this.resetData()
+      this.$store.dispatch('add_owed', { by: obj.by, to: obj.to, sum: obj.price })
     },
 
     defaultData () {
