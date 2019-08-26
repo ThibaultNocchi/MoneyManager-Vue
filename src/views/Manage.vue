@@ -8,17 +8,6 @@
         <h5 class="card-title">Add or remove someone</h5>
         <div class="card-text">
 
-          <form @submit.prevent="remove_name">
-            <div class="form-row align-items-end">
-              <div class="form-group col">
-                <people-select ref="select" class="form-control"></people-select>
-              </div>
-              <div class="form-group col ml-2">
-                <button type="submit" class="btn btn-danger" :disabled="this.$store.state.people.length === 0 ? true : false">Remove</button>
-              </div>
-            </div>
-          </form>
-
           <form @submit.prevent="add_new_name">
             <div class="form-row">
               <div class="form-group col">
@@ -29,8 +18,19 @@
                 <button type="submit" class="btn btn-primary" :disabled="new_name === '' ? true : false">Add</button>
               </div>
             </div>
-
           </form>
+
+          <form @submit.prevent="remove_name">
+            <div class="form-row align-items-end">
+              <div class="form-group col">
+                <people-select ref="select" class="form-control" :disabled="this.$store.state.people.length === 0 ? true : false"></people-select>
+              </div>
+              <div class="form-group col ml-2">
+                <button type="submit" class="btn btn-danger" :disabled="this.$store.state.people.length === 0 ? true : false">Remove</button>
+              </div>
+            </div>
+          </form>
+
         </div>
       </div>
     </div>
